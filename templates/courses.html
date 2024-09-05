@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Course List</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Textbook</th>
+                    <th>Reference Links</th>
+                    <th>Question Papers</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for course in courses %}
+                <tr>
+                    <td>{{ course[1] }}</td> <!-- Title -->
+                    <td>{{ course[2] }}</td> <!-- Description -->
+                    <td>
+                        {% if course[3] %}
+                            <a href="{{ url_for('static', filename=course[3]) }}" target="_blank">View PDF</a>
+                        {% else %}
+                            None
+                        {% endif %}
+                    </td> <!-- Textbook -->
+                    <td>{{ course[4] }}</td> <!-- Reference Links -->
+                    <td>{{ course[5] }}</td> <!-- Question Papers -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <form action="/delete_all_courses" method="post" onsubmit="confirmDeletion(event)">
+            <button type="submit">Delete All Courses</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Course</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Add a New Course</h1>
+        <form action="/add_course" method="post" enctype="multipart/form-data">
+            <label for="title">Course Title:</label>
+            <input type="text" id="title" name="title" required><br><br>
+
+            <label for="description">Course Description:</label>
+            <textarea id="description" name="description" rows="4" cols="50" required></textarea><br><br>
+
+            <label for="textbook">Textbook (PDF):</label>
+            <input type="file" id="textbook" name="textbook" accept=".pdf"><br><br>
+
+            <label for="reference_links">Reference Links (comma-separated):</label>
+            <input type="text" id="reference_links" name="reference_links"><br><br>
+
+            <label for="question_papers">Question Papers (comma-separated URLs):</label>
+            <input type="text" id="question_papers" name="question_papers"><br><br>
+
+            <input type="submit" value="Add Course">
+        </form>
+
+        <a href="/courses">View All Courses</a> <!-- Link to view courses -->
+    </div>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>
